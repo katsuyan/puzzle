@@ -1,8 +1,5 @@
-(def N 100)
-(def START 2)
-
 (defn make-cards [num]
-  (for [x (range 1 (inc N)) y [false]] [x y]))
+  (for [x (range 1 (inc num)) y [false]] [x y]))
 
 (defn reverse-cards [cards reverse-num]
   (map (fn [[num side]]
@@ -12,12 +9,16 @@
        cards))
 
 (defn reverse [cards num]
-  (if (= num N)
+  (if (= num (count cards))
       (reverse-cards cards num)
       (reverse (reverse-cards cards num) (inc num))))
 
-(defn get-answer []
-  (let [cards (make-cards N)]
+(defn get-answer [card-num start-num]
+  (let [cards (make-cards card-num)]
     (map (fn [[num _]] num)
          (filter (fn [[_ side]] (not side))
-                 (reverse cards START)))))
+                 (reverse cards start-num)))))
+
+(def N 100)
+(def START 2)
+(def answer (get-answer N START))
