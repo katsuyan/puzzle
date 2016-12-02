@@ -1,8 +1,8 @@
-(defn cutbar-rec [m n current]
+(defn cutbar-rec [m n current-num]
   (cond
-    (>= current n) 0
-    (< current m) (inc (cutbar-rec m n (* 2 current)))
-    :else (inc (cutbar-rec m n (+ current m)))))
+    (>= current-num n) 0
+    (< current-num m) (inc (cutbar-rec m n (* 2 current-num)))
+    :else (inc (cutbar-rec m n (+ current-num m)))))
 
 (defn cutbar [m n]
   (cutbar-rec m n 1))
