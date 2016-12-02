@@ -1,11 +1,14 @@
 (def N 100)
-(def start-num 2)
-(def cards (for [x (range 1 (inc N)) y [false]] [x y]))
+(def START 2)
 
-(defn reverse-cards [cards num]
-  (map #(if (= 0 (mod (first %) num))
-            [(first %) (not (second %))]
-            %)
+(defn make-cards [num]
+  (for [x (range 1 (inc N)) y [false]] [x y]))
+
+(defn reverse-cards [cards reverse-num]
+  (map (fn [[num side]]
+         (if (= 0 (mod num reverse-num))
+             [num (not side)]
+             [num side]))
        cards))
 
 (defn reverse [cards num]
@@ -14,6 +17,7 @@
       (reverse (reverse-cards cards num) (inc num))))
 
 (defn get-answer []
-  (map #(first %)
-      (filter #(not (second %))
-              (reverse cards start-num))))
+  (let [cards (make-cards N)]
+    (map (fn [[num _]] num)
+         (filter (fn [[_ side]] (not side))
+                 (reverse cards START)))))
