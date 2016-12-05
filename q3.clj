@@ -11,7 +11,7 @@
 (defn reverse [cards num]
   (if (= num (count cards))
       (reverse-cards cards num)
-      (reverse (reverse-cards cards num) (inc num))))
+      (recur (reverse-cards cards num) (inc num))))
 
 (defn get-answer [card-num start-num]
   (let [cards (make-cards card-num)]
