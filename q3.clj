@@ -8,7 +8,7 @@
              [num side]))
        cards))
 
-(defn reverse [cards num]
+(defn reverse-recur [cards num]
   (if (= num (count cards))
       (reverse-cards cards num)
       (recur (reverse-cards cards num) (inc num))))
@@ -17,7 +17,7 @@
   (let [cards (make-cards card-num)]
     (map (fn [[num _]] num)
          (filter (fn [[_ side]] (not side))
-                 (reverse cards start-num)))))
+                 (reverse-recur cards start-num)))))
 
 (def N 100)
 (def START 2)
