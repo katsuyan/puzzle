@@ -1,4 +1,5 @@
-(require '[clojure.string :as string])
+(ns puzzule.q2
+  (:require [clojure.string :as string]))
 
 (defn palindromes-num? [num1 num2]
   (let [num1-str (str num1)

@@ -1,3 +1,5 @@
+(ns puzzule.q4)
+
 (defn cutbar-rec [m n current-num]
   (cond
     (>= current-num n) 0

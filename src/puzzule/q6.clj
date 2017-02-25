@@ -1,3 +1,5 @@
+(ns puzzule.q6)
+
 (defn check-recur [n start]
   (cond (= n start) true
         (= n 1) false

@@ -1,3 +1,5 @@
+(ns puzzule.q3)
+
 (defn make-cards [num]
   (for [x (range 1 (inc num)) y [false]] [x y]))
 

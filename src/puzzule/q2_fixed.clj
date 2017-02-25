@@ -1,4 +1,5 @@
-(require '[clojure.string :as str])
+(ns puzzule.q2fixed
+  (:require [clojure.string :as str]))
 
 (defn reverse-same-num? [num1 num2]
   (= (str num1)
