@@ -15,11 +15,11 @@
 (defn reverse-same-binary? [bin]
   (= bin (string/reverse bin)))
 
-(def days (vec (for [n (range)
+(def days (for [n (range)
         :while (not (t/after?
                       (t/plus (t/date-time 1964 10 10) (t/days n))
                       (t/date-time 2020 7 24)))]
-  (t/plus (t/date-time 1964 10 10) (t/days n)))))
+  (t/plus (t/date-time 1964 10 10) (t/days n))))
 
 (defn time-to-str [time]
   (let [custom-formatter (f/formatter "yyyyMMdd")]
