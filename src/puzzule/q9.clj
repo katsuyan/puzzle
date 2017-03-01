@@ -7,7 +7,6 @@
                  (path-recur b (- g 1)))))
 
 (defn path [b g]
-  (+ (path-recur (- b 1) g)
-     (path-recur b (- g 1))))
+  (path-recur (- b 1) g))
 
 (path 20 10)
