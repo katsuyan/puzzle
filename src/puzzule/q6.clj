@@ -11,7 +11,7 @@
   (check-recur (+ (* n 3) 1) n))
 
 (defn get-answer [n]
-  (count (filter check (range 2 (+ n 1) 2))))
+  (let [even-nums (range 2 (+ n 1) 2)]
+    (count (filter check even-nums))))
 
-(def n 10000)
-(def answer (get-answer n))
+(def answer (get-answer 10000))
