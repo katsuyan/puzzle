@@ -11,4 +11,4 @@
              (walk (dec move-num) [(first current) (dec (second current))] (conj route current))))))
 
 
-(walk 3 [0 0] [])
+(walk 12 [0 0] [])

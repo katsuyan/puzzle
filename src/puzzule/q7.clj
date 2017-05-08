@@ -26,7 +26,8 @@
     (f/unparse custom-formatter time)))
 
 (map binary-string-to-int
-     (filter reverse-same-binary?
-             (map int-to-binary-string
-                  (map parse-int
-                       (map time-to-str days)))))
+    (filter reverse-same-binary?
+            (map (comp int-to-binary-string
+                       parse-int
+                       time-to-str)
+                 days)))
