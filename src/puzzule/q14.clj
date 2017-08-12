@@ -1,3 +1,5 @@
+(ns puzzule.q14)
+
 (def countries_org ["Brazil", "Croatia", "Mexico", "Cameroon", "Spain", "Netherlands",
                    "China", "Australia", "Colombia", "Greece", "Cote d'Ivoire", "Japan",
                    "Uruguay", "Costa Rica", "England", "Italy", "Switzerland", "Euador",
