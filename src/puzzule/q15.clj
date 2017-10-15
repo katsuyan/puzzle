@@ -1,0 +1,1 @@
+(ns puzzule.q15)
