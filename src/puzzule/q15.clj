@@ -15,4 +15,4 @@
              (reduce + (map (fn [move-pare] (apply #(move steps (+ a %1) (- b %2) cnt) move-pare))
                             (move-pares steps))))))
 
-(move steps 0 n 0)
+(def answer (move steps 0 n 0))
