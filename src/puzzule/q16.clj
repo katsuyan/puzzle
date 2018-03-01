@@ -1,5 +1,6 @@
 (ns puzzule.q16
-  (:require [clojure.math.combinatorics :as combo]))
+  (:require [clojure.math.combinatorics :as combo]
+            [clojure.math.numeric-tower :as math]))
 
 (defn area-from-pare [pare]
   (apply * pare))
@@ -24,4 +25,13 @@
   (map #(eq_filter half-line %)
           (combo/combinations (pares half-line) 2)))
 
-(count (distinct (filter #(not (nil? %)) (map eq_sq? (map #(/ % 2) (filter #(= 0 (mod % 4)) (range 1 (inc 500))))))))
+(defn get-min-from-pare-pare [pare-pare]
+  (let [gcd1 (apply math/gcd (first pare-pare))
+        gcd2 (apply math/gcd (second pare-pare))]
+    (math/gcd gcd1 gcd2)))
+
+(defn sq-normalization [pare-pare]
+  (let [min-val (get-min-from-pare-pare pare-pare)]
+    (map #(map (fn [n] (/ n min-val)) %) pare-pare)))
+
+(count (distinct (map sq-normalization (apply concat (remove empty? (map #(remove nil? %) (map eq_sq? (map #(/ % 2) (filter #(= 0 (mod % 2)) (range 1 (inc 500)))))))))))
