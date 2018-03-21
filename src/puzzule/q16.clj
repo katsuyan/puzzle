@@ -34,4 +34,20 @@
   (let [min-val (get-min-from-pare-pare pare-pare)]
     (map #(map (fn [n] (/ n min-val)) %) pare-pare)))
 
-(count (distinct (map sq-normalization (apply concat (remove empty? (map #(remove nil? %) (map eq_sq? (map #(/ % 2) (filter #(= 0 (mod % 2)) (range 1 (inc 500)))))))))))
+(defn remove-nil [lst]
+  (map #(remove nil? %) lst))
+
+(defn remove-empty [lst]
+  (remove empty? lst))
+
+(defn even-list [max]
+  (filter #(= 0 (mod % 2)) (range 1 (inc max))))
+
+(defn half-number-in-list [lst]
+  (map #(/ % 2) lst))
+
+(defn answer [max]
+  (count (distinct
+    (map sq-normalization
+         (apply concat
+           (remove-empty (remove-nil (map eq_sq? (half-number-in-list (even-list max))))))))))
