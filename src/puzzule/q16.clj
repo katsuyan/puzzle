@@ -2,6 +2,23 @@
   (:require [clojure.math.combinatorics :as combo]
             [clojure.math.numeric-tower :as math]))
 
+
+(defn remove-nil [lst]
+  (map #(remove nil? %) lst))
+
+(defn remove-empty [lst]
+  (remove empty? lst))
+
+(defn even-list [max]
+  (filter #(= 0 (mod % 2)) (range 1 (inc max))))
+
+(defn half-number-in-list [lst]
+  (map #(/ % 2) lst))
+
+(defn include? [seq key]
+  (some #(= key %) seq))
+
+
 (defn area-from-pare [pare]
   (apply * pare))
 
@@ -11,9 +28,6 @@
       pare-list
       (recur (dec x) (inc y) (conj pare-list [x y]))))
   (pares-rec (dec half-line) 1 []))
-
-(defn include? [seq key]
-  (some #(= key %) seq))
 
 (defn eq_filter [half-line half-line-pares]
   (if (= (area-from-pare [(/ half-line 2) (/ half-line 2)])
@@ -34,20 +48,11 @@
   (let [min-val (get-min-from-pare-pare pare-pare)]
     (map #(map (fn [n] (/ n min-val)) %) pare-pare)))
 
-(defn remove-nil [lst]
-  (map #(remove nil? %) lst))
-
-(defn remove-empty [lst]
-  (remove empty? lst))
-
-(defn even-list [max]
-  (filter #(= 0 (mod % 2)) (range 1 (inc max))))
-
-(defn half-number-in-list [lst]
-  (map #(/ % 2) lst))
 
 (defn answer [max]
   (count (distinct
     (map sq-normalization
          (apply concat
            (remove-empty (remove-nil (map eq_sq? (half-number-in-list (even-list max))))))))))
+
+(answer 500)
